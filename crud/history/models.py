@@ -1,27 +1,6 @@
 from django.db import models
-
-class Person(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.TextField()
-    last_name = models.TextField()
-    dni = models.TextField()
-    birth_date = models.DateField()
-    gender = models.TextField()
-    phone = models.TextField()
-    email = models.EmailField()
-    address = models.TextField()
-    observations = models.TextField()
-
-    def __str__(self) -> str:
-        return f"Persona:  {self.name} {self.last_name} {self.dni}"
-
-class Dr(models.Model):
-    id = models.AutoField(primary_key=True)
-    idPerson = models.ForeignKey(Person, on_delete=models.CASCADE)
-    status = models.TextField()
-    
-    def __str__(self) -> str:
-        return super().__str__()
+from person.models import Person
+from dr.models import Dr
     
 class Consult(models.Model):
     id = models.AutoField(primary_key=True)
