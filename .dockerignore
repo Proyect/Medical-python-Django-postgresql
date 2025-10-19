@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Django
+*.log
+staticfiles/
+media/
+
+# VCS
+.git/
+.gitignore
+
+# Docker
+Dockerfile*
+!Dockerfile
+.dockerignore
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# SQLite DB (we copy source, not local dev db)
+crud/db.sqlite3

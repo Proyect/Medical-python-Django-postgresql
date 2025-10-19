@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: crud-django:latest
+    container_name: crud-web
+    command: /bin/bash -lc "python crud/manage.py migrate --noinput && python crud/manage.py collectstatic --noinput || true && gunicorn crud.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # sensible defaults; can be overridden in .env
+      DJANGO_DEBUG: "true"
+      DJANGO_SECRET_KEY: dev-insecure-secret-key
+      ALLOWED_HOSTS: "*"
+      DJANGO_SETTINGS_MODULE: crud.crud.settings
+    volumes:
+      - ./crud:/app/crud
+    restart: unless-stopped
